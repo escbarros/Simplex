@@ -1,0 +1,373 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  background-color: #1e293b;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 2rem 5rem;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+}
+
+#form-container {
+  width: 100%;
+  display: flex;
+  min-height: 25vh;
+  background-color: #0f172a;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+#objective {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+}
+#objective > h5 {
+  height: 2rem;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  background-color: #475569;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+.objective-input-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+  background-color: #64748b;
+  height: 100%;
+  width: auto;
+  gap: 1rem;
+}
+
+.objective-function-variable-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.objective-function-variable-container > input {
+  width: 8ch;
+  background-color: #606c7f;
+  color: white;
+  outline: none;
+  border: 2px solid #3f4b63;
+  text-align: center;
+}
+.objective-function-variable-container:not(:first-child) {
+  position: relative;
+  margin-left: 1rem;
+}
+.objective-function-variable-container:not(:first-child):before {
+  content: "+";
+  position: absolute;
+  left: -1.125rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  font-weight: 600;
+  user-select: none;
+}
+.objective-variable-label {
+  user-select: none;
+  font-weight: 600;
+  position: relative;
+}
+.objective-variable-label::after {
+  content: attr(number);
+  position: absolute;
+  bottom: -5px;
+  font-size: 0.8em;
+}
+
+#tableContainer {
+  width: 100%;
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+}
+
+#tableContainer > table {
+  width: 75%;
+}
+table {
+  color: white;
+}
+th {
+  color: white;
+  border: 2px solid #585d65;
+  background: #374151;
+}
+td {
+  text-align: center;
+}
+.operationsCol {
+  text-align: center;
+  font-size: 1.125em;
+  position: relative;
+  width: 7.5%;
+}
+
+.operationsCol:after {
+  content: attr(number);
+  position: absolute;
+  bottom: 25%;
+  font-size: 0.8em;
+}
+
+.bCol {
+  width: 7.5%;
+}
+
+th.variableCol {
+  font-size: 1.125em;
+  font-weight: bolder;
+  position: relative;
+}
+
+th.variableCol:after {
+  content: attr(number);
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8em;
+}
+
+tfoot > tr > th {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+tbody > tr {
+  position: relative;
+}
+
+tbody > tr > td {
+  height: 3rem;
+}
+tbody > tr:not(:last-child) > td {
+  border-bottom: 2px solid #585d65;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #ffffff0d;
+}
+
+#add-new-restriction-button {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 1rem;
+  width: max-content;
+  padding: 0.25rem 0.5rem;
+  background-color: #10b98121;
+  border: 2px solid #047857;
+  color: #047857;
+  border-radius: 1rem;
+
+  transition: background-color 0.2s, color 0.2s;
+}
+#add-new-restriction-button:hover {
+  background-color: #047857;
+  color: white;
+}
+
+.remove-restriction-button {
+  cursor: pointer;
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f43f5e;
+  border: 2px solid #f43f5e;
+  background-color: #f43f5e47;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+.remove-restriction-button:hover {
+  background-color: #f43f5e;
+  color: white;
+}
+.restrictionInput {
+  background-color: #94a3b82e;
+  border: 1px solid #94a3b8;
+  text-align: center;
+  color: white;
+  width: 75%;
+  max-width: 10rem;
+}
+
+#form-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#form-button-container > button {
+  padding: 0.25rem 0.75rem;
+  border: 2px solid;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#form-reset-button {
+  border-color: #facc15 !important;
+  color: #facc15;
+  background-color: #facc156e;
+}
+
+#form-reset-button:hover {
+  background-color: #facc15;
+  color: white;
+}
+
+#form-calculate-button {
+  border-color: #4ade80 !important;
+  color: #4ade80;
+  background-color: #4ade806e;
+}
+#form-calculate-button:hover {
+  background-color: #4ade80;
+  color: white;
+}
+
+#result-container {
+  flex: 1;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  --arrow-color: #475569;
+  background: linear-gradient(to right, var(--arrow-color) 3px, transparent 3px)
+      0 0,
+    linear-gradient(to right, var(--arrow-color) 3px, transparent 3px) 0 100%,
+    linear-gradient(to left, var(--arrow-color) 3px, transparent 3px) 100% 0,
+    linear-gradient(to left, var(--arrow-color) 3px, transparent 3px) 100% 100%,
+    linear-gradient(to bottom, var(--arrow-color) 3px, transparent 3px) 0 0,
+    linear-gradient(to bottom, var(--arrow-color) 3px, transparent 3px) 100% 0,
+    linear-gradient(to top, var(--arrow-color) 3px, transparent 3px) 0 100%,
+    linear-gradient(to top, var(--arrow-color) 3px, transparent 3px) 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  margin-top: 1rem;
+  position: relative;
+  padding: 1rem 2rem;
+}
+
+#result-container:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(#4755694f 2px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -5px -5px;
+}
+
+#result-location-label {
+  user-select: none;
+  width: max-content;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: #475569;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#result-container:has(> #result-location-label) {
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+
+  backdrop-filter: blur(8px) saturate(152%);
+  -webkit-backdrop-filter: blur(8px) saturate(152%);
+  background-color: rgba(50, 57, 63, 0.72);
+  border-radius: 12px;
+}
+#nomes {
+  background: #06b6d4;
+  background: linear-gradient(to right, #06b6d4 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+  position: relative;
+}
+
+#result-table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#reset-body {
+  position: fixed;
+  bottom: 4rem;
+  right: 5rem;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
+
+.iteration {
+  width: 100%;
+}
+.step {
+  width: 100%;
+}
+hr {
+  border-color: #cffafe;
+  margin: 1rem 0;
+}
+
+.iteration > h2 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.step > h4 {
+  color: #cffafe;
+  margin: 1rem 0;
+  font-style: italic;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
