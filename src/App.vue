@@ -98,6 +98,7 @@
       <span id="result-location-label" v-if="result.length == 0"
         ><h5>O resultado será exibido aqui</h5></span
       >
+      <span id="exception" v-if="exception.length > 0">{{ exception }}</span>
       <section id="result-table-container" v-else>
         <div class="iteration" v-for="(iteration, index) of result">
           <hr v-if="index > 0" />
@@ -137,6 +138,7 @@ export default {
       ],
 
       result: [],
+      exception: "",
     };
   },
 
@@ -219,12 +221,17 @@ export default {
         [0, 0, 0],
       ];
       this.result = [];
+      this.exception = "";
     },
 
     calculate() {
-      this.result = simplex(this.variableValues, this.restrictions);
-
-      console.warn(this.result);
+      try {
+        this.result = simplex(this.variableValues, this.restrictions);
+        this.exception = "";
+      } catch (e) {
+        this.exception = e;
+        this.result = [];
+      }
     },
   },
 };

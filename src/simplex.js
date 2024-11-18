@@ -4,15 +4,12 @@ export default function calculate(objectiveValues, restrictions) {
   let matrix = deepCopy(input.steps[0].table);
   result.push(input);
 
-  console.error(matrix);
-
   while (stopCondition(matrix)) {
     const { matrix: newMatrix, steps } = calcMatrix(deepCopy(matrix));
     result.push({ steps });
     matrix = newMatrix;
   }
 
-  console.log(result);
   return result;
 }
 
@@ -40,7 +37,6 @@ function receiveInput(objectiveValues, restrictions) {
 
 function stopCondition(matrix) {
   let index = matrix.length - 1;
-  console.error(matrix[index]);
   for (let value of matrix[index]) {
     if (value > 0) return true;
   }
@@ -65,8 +61,6 @@ function calcMatrix(matrix) {
     }
   }
 
-  const labelEntering = `Coluna ${columnEnteringIndex} entra`;
-
   // Determinar a variável básica que sai
   let rowLeavingIndex = -1;
   let minRatio = Infinity;
@@ -84,16 +78,8 @@ function calcMatrix(matrix) {
   }
 
   if (rowLeavingIndex === -1) {
-    const noExitLabel = "Não foi possível determinar a variável que sai.";
-    steps.push({
-      label: noExitLabel,
-      table: JSON.parse(JSON.stringify(matrix)),
-    });
-    console.log(noExitLabel);
-    return { matrix, steps };
+    throw new Error("Problema sem fronteira");
   }
-
-  const labelLeaving = `Linha ${rowLeavingIndex} sai`;
 
   // Tornar o pivô igual a 1
   const pivot = matrix[rowLeavingIndex][columnEnteringIndex];
@@ -124,7 +110,6 @@ function calcMatrix(matrix) {
     table: JSON.parse(JSON.stringify(matrix)),
   });
 
-  console.log("Matriz atualizada:", matrix);
   return { matrix, steps };
 }
 
